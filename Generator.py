@@ -40,7 +40,6 @@ def subjects_gen(subs, n_subjects, stores, salas):
     return subjects
 
 def generator(n_salas, n_stores, n_turmas, n_subjects):
-
     salas = []; stores = []; turmas = []
 #GERAR SALAS
     for i in range(n_salas):
@@ -66,4 +65,3 @@ def generator(n_salas, n_stores, n_turmas, n_subjects):
     return school
 
 escola = generator(10,15,10,7)
-print(escola.teachers)

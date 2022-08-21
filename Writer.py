@@ -31,7 +31,7 @@ def dict_to_str(schedule : dict):
     for key in schedule.keys():
         s += key + ': '
         for hour in schedule[key]:
-            if type(hour) == int:
+            if hour is '':
                 s += '   '
             else:
                 s += hour 
