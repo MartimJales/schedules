@@ -1,25 +1,66 @@
 class Room:
+    '''
+    Classe para identificar salas da escola
+    schedule - referência para o espaço livre
+    '''
     def __init__(self, name):
         self.name = name
-        self.schedule = [[]]       
+        self.schedule = create_schedule()   
 
 class Teacher:
-    def __init__(self, name, subjects, turmas):
+    '''
+    Classe para identificar os professores da escola
+    Name - Comodidade
+    id - Numero do processo do professor
+    schedule - Objetivo final do programa
+    '''
+    def __init__(self, name, id, subjects, turmas = []):
         self.name = name
-        self.subjects = subjects
-        self.turmas = turmas
-        self.schedule = [[]]
+        self.id = id
+        self.schedule = create_schedule()
 
 class Turma:
-    def __init__(self, name, subjects, teachers):
+    '''
+    Classe para identificar as turmas da escola
+    name - string com ano e classe
+    subjects - Informação com as disciplinas, horas, professores e salas disponiveis para a turma
+    schdule - Objetivo final do programa
+    '''
+    def __init__(self, name, subjects):
         self.name = name
         self.subjects = subjects
-        self.teachers = teachers
-        self.schedule = [[]]
+        self.schedule = create_schedule()
 
 class Subject:
-    def __init__(self, name, rooms, teacher):
+    '''
+    Classe que relaciona uma turma com um professor para determinada disciplina.
+    rooms - salas onde é possível lecionar esta cadeira
+    teacher - id do professor que leciona esta cadeira
+    hours - numero de horas semanais obrigatórias 
+    '''
+    def __init__(self, name, rooms, teacher, hours, turma):
         self.name = name
         self.rooms = rooms
         self.teacher = teacher
-        self.schedule = [[]]   
+        self.hours = hours
+
+class School:
+    '''
+    Classe mãe para interligar as salas, os professors e as turmas
+    '''
+    def __init__(self, rooms, teachers, turmas):
+        self.rooms = rooms
+        self.teachers = teachers
+        self.turmas = turmas
+
+def create_schedule():
+    '''
+    Função para criar um horário semanal vazio
+    '''
+    schedule = {}
+    schedule['seg'] = list(range(11))
+    schedule['ter'] = list(range(11))
+    schedule['qua'] = list(range(11))
+    schedule['qui'] = list(range(11))
+    schedule['sex'] = list(range(11))
+    return schedule
