@@ -14,7 +14,7 @@ class Teacher:
     id - Numero do processo do professor
     schedule - Objetivo final do programa
     '''
-    def __init__(self, name, id, subjects, turmas = []):
+    def __init__(self, name, id):
         self.name = name
         self.id = id
         self.schedule = create_schedule()
@@ -38,7 +38,7 @@ class Subject:
     teacher - id do professor que leciona esta cadeira
     hours - numero de horas semanais obrigatórias 
     '''
-    def __init__(self, name, rooms, teacher, hours, turma):
+    def __init__(self, name, rooms, teacher, hours):
         self.name = name
         self.rooms = rooms
         self.teacher = teacher
@@ -58,9 +58,9 @@ def create_schedule():
     Função para criar um horário semanal vazio
     '''
     schedule = {}
-    schedule['seg'] = list(range(11))
-    schedule['ter'] = list(range(11))
-    schedule['qua'] = list(range(11))
-    schedule['qui'] = list(range(11))
-    schedule['sex'] = list(range(11))
+    schedule['seg'] = ['']*11
+    schedule['ter'] = ['']*11
+    schedule['qua'] = ['']*11
+    schedule['qui'] = ['']*11
+    schedule['sex'] = ['']*11
     return schedule
