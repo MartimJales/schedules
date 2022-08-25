@@ -5,8 +5,15 @@ class Room:
     '''
     def __init__(self, name):
         self.name = name
-        self.schedule = create_schedule()   
+        self.schedule = create_schedule()
 
+    def fill_schedule(self, subject, day, hour):
+        self.schedule[day][hour] = subject.name + ';' #+ subject.teacher.name + ':' + subject.teacher.id
+
+    def free_check(self, day, hour):
+        if self.schedule[day][hour] != '':
+            return False
+        return True
 class Teacher:
     '''
     Classe para identificar os professores da escola
@@ -19,6 +26,13 @@ class Teacher:
         self.id = id
         self.schedule = create_schedule()
 
+    def fill_schedule(self, subject, room, day, hour):
+        self.schedule[day][hour] = subject.name + ';' + str(room.name)
+
+    def free_check(self, day, hour):
+        if self.schedule[day][hour] != '':
+            return False
+        return True
 class Turma:
     '''
     Classe para identificar as turmas da escola
@@ -36,7 +50,7 @@ class Subject:
     Classe que relaciona uma turma com um professor para determinada disciplina.
     rooms - salas onde é possível lecionar esta cadeira
     teacher - id do professor que leciona esta cadeira
-    hours - numero de horas semanais obrigatórias 
+    hours - numero de horas semanais obrigatórias
     '''
     def __init__(self, name, rooms, teacher, hours):
         self.name = name
