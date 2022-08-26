@@ -41,11 +41,11 @@ def subjects_gen(subs, n_subjects, stores, salas):
 
 def generator(n_salas, n_stores, n_turmas, n_subjects):
     salas = []; stores = []; turmas = []
-#GERAR SALAS
+    #GERAR SALAS
     for i in range(n_salas):
         salas.append(Room(str(i)))
 
-#GERAR STORES
+    #GERAR STORES
     id_list = []
     for _ in range(n_stores):
         id_list.append(r.randint(1000,9000))
@@ -54,14 +54,34 @@ def generator(n_salas, n_stores, n_turmas, n_subjects):
     for id in ids:
         stores.append(Teacher(t_list[r.randint(0,len(t_list)-1)], str(id)))
 
-#GERAR TURMAS
+    #GERAR TURMAS
     for i in range(0, n_turmas + 1):
         subs = subjects_list.copy()
         subjects = subjects_gen(subs, n_subjects, stores, salas)
         turmas.append(Turma(str(r.randint(7,12)) + l_list[i], subjects))
 
-#CRIAR ESCOLA
+    #CRIAR ESCOLA
     school = School(salas, stores, turmas)
     return school
 
 escola = generator(10,15,10,7)
+
+def print_escola(escola):
+    print("\n\n")
+    print("Professores: ", end='')
+    print(escola.teachers[0].name+':'+str(escola.teachers[0].id))
+    for stor in escola.teachers[1:]:
+        print('             ' + stor.name + ':' +str(stor.id))
+    print(), print("Turmas: ",end='')
+
+    turma0 = escola.turmas[0]
+    print(turma0.name+':')
+    for subject in turma0.subjects:
+            print("          ",end='')
+            print(subject.name+'; '+subject.teacher.name+':' + subject.teacher.id + '; ' + "salas: "+str(subject.rooms) + '; horas: '+str(subject.hours))
+    for turma in escola.turmas[1:]:
+        print("        "+turma.name+':')
+        for subject in turma.subjects:
+            print("          ",end='')
+            print(subject.name+'; '+subject.teacher.name+':' + subject.teacher.id + '; ' + "salas: "+str(subject.rooms) + '; horas: '+str(subject.hours))
+        print()
