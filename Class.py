@@ -8,7 +8,7 @@ class Room:
         self.schedule = create_schedule()
 
     def fill_schedule(self, subject, day, hour):
-        self.schedule[day][hour] = subject.name + ';' #+ subject.teacher.name + ':' + subject.teacher.id 'tirar o .name do generator
+        self.schedule[day][hour] = subject.name + ';' + subject.teacher.name + ':' + subject.teacher.id
 
     def free_check(self, day, hour):
         if self.schedule[day][hour] != '':

@@ -5,9 +5,9 @@ import random as r
 
 #salas, stores, turmas
 subjects_list = ["MAT","FQ","BIO","POR","FILO","GEO","ECO","QUI","FIS","EF","HIST","ING","GEOM","EV","ET"]
-t_list = ["João","André","Joaquim","Ana","Leopoldina","Jorge","Daniela","Martim","Viegas","Beah"
-,"Asdrubal","Anibal","Rosa","Mariana","Anastácia","Ursula","Marina","Luís","Pedro","António","Miguel"
-"Caramelo","Rodrigo","Catarina","Sara","Tatiana","Inês","Joana","Cusca","Parva","Parvo","Fucking Tourist"]
+t_list = ["Joao","Andre","Joaquim","Ana","Leopoldina","Jorge","Daniela","Martim","Viegas","Beah"
+,"Asdrubal","Anibal","Rosa","Mariana","Anastacia","Ursula","Marina","Luis","Pedro","Antonio","Miguel"
+"Caramelo","Rodrigo","Catarina","Sara","Tatiana","Ines","Joana","Cusca","Parva","Parvo","Fucking Tourist"]
 l_list = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 
 def subjects_gen(subs, n_subjects, stores, salas):
@@ -29,8 +29,8 @@ def subjects_gen(subs, n_subjects, stores, salas):
         sub_at.append(rooms)
 
         #escolher stor da subject
-        sub_at.append(stores[r.randint(0,len(stores) - 1)].name)
-
+        sub_at.append(stores[r.randint(0,len(stores) - 1)])
+                                                         #.name
         #escolher horas de subject
         sub_at.append(r.randint(4,7))
 

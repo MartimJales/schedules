@@ -1,2 +1,2 @@
 # schedules
-A program to create schedules for schools automatically
+A program to automatically create schedules for schools
