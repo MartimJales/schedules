@@ -10,23 +10,18 @@ def recursion(school: School, day: str, hour: int, var: int):
     if (school.is_complete()):
         writer(school, var)
     else:
-        for turma in range(len(school.turmas) - 1):
-            for subject in range(len(school.turmas[turma].subjects) - 1):
-                var += 1
-                school.turmas[turma].schedule[day][hour] = school.turmas[turma].subjects[subject].name
-                school.turmas[turma].subjects[subject].hours -= 1
-                if hour == 10:
-                    hour = -1
-                    day = str(int(day) + 1)
-                recursion(school, day, hour + 1, var)
-            
-def filter_subjects(turma : Turma):
-    if len(turma.subjects) == 1:
-        if turma.subjects[0].hours == 0:
-            return []
-    for i in range(len(turma.subjects) - 1):
-        if turma.subjects[i].hours == 0:
-            turma.subjects.pop(i)
-    return turma.subjects
-
-            
+        for turma in range(len(school.valid_turmas())):
+            subjects = school.turmas[turma].valid_subjects()
+            if subjects == []:
+                day = '0'
+                hour = 0
+            else:
+                for subject in range(len(subjects)):
+                    var += 1
+                    '''We have a problem here'''
+                    school.turmas[turma].schedule[day][hour] = school.turmas[turma].subjects[subject].name
+                    school.turmas[turma].subjects[subject].hours -= 1
+                    if hour == 10:
+                        hour = -1
+                        day = str(int(day) + 1)
+                    recursion(school, day, hour + 1, var)

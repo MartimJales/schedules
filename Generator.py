@@ -55,7 +55,7 @@ def generator(n_salas, n_stores, n_turmas, n_subjects):
         stores.append(Teacher(t_list[r.randint(0,len(t_list)-1)], str(id)))
 
     #GERAR TURMAS
-    for i in range(0, n_turmas + 1):
+    for i in range(n_turmas):
         subs = subjects_list.copy()
         subjects = subjects_gen(subs, n_subjects, stores, salas)
         turmas.append(Turma(str(r.randint(7,12)) + l_list[i], subjects))
@@ -63,8 +63,6 @@ def generator(n_salas, n_stores, n_turmas, n_subjects):
     #CRIAR ESCOLA
     school = School(salas, stores, turmas)
     return school
-
-escola = generator(10,15,10,7)
 
 def print_escola(escola):
     print("\n\n")

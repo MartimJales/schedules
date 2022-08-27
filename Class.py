@@ -61,6 +61,13 @@ class Turma:
         self.subjects = subjects
         self.schedule = create_schedule()
 
+    def valid_subjects(self):
+        arr = []
+        for subject in self.subjects:
+            if subject.hours != 0:
+                arr.append(subject)
+        return arr
+
 class School:
     '''
     Classe mãe para interligar as salas, os professors e as turmas
@@ -75,10 +82,16 @@ class School:
         Check if all the classes have subjects fill in schedule
         '''
         for turma in self.turmas:
-            if turma.subjects is not []:
+            if turma.valid_subjects() != []:
                 return False
         return True
 
+    def valid_turmas(self):
+        arr = []
+        for turma in self.turmas:
+            if turma.valid_subjects() != []:
+                arr.append(turma)
+        return arr
 
 
 def create_schedule():
